@@ -1,128 +1,101 @@
 {
-    "$schema": "https://aka.ms/terminal-profiles-schema",
-    "globals": {
-        "alwaysShowTabs": true,
-        "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
-        "initialCols": 130,
-        "initialRows": 55,
-        "requestedTheme": "system",
-        "showTabsInTitlebar": true,
-        "showTerminalTitleInTitlebar": true,
-        "keybindings": [
-            {
-                "command": "closeTab",
-                "keys": [
-                    "ctrl+w"
-                ]
-            },
-            {
-                "command": "newTab",
-                "keys": [
-                    "ctrl+t"
-                ]
-            },
-            {
-                "command": "nextTab",
-                "keys": [
-                    "ctrl+tab"
-                ]
-            },
-            {
-                "command": "openSettings",
-                "keys": [
-                    "ctrl+,"
-                ]
-            },
-            {
-                "command": "prevTab",
-                "keys": [
-                    "ctrl+shift+tab"
-                ]
-            },
-            {
-                "command": "scrollDown",
-                "keys": [
-                    "ctrl+shift+down"
-                ]
-            },
-            {
-                "command": "scrollDownPage",
-                "keys": [
-                    "ctrl+shift+pgdn"
-                ]
-            },
-            {
-                "command": "scrollUp",
-                "keys": [
-                    "ctrl+shift+up"
-                ]
-            },
-            {
-                "command": "splitVertical",
-                "keys": [
-                    "ctrl+§"
-                ]
-            },
-            {
-                "command": "scrollUpPage",
-                "keys": [
-                    "ctrl+shift+pgup"
-                ]
-            }
-        ]
-    },
-    "profiles": [
-        {
-            "closeOnExit": true,
-            "colorScheme": "Dracula",
-            "commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
-            "cursorColor": "#FFFFFF",
-            "cursorShape": "bar",
-            "fontFace": "Cascadia Mono PL",
-            "fontSize": 9,
-            "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
-            "historySize": 9001,
-            "icon": "ms-appx:///ProfileIcons/{574e775e-4f2a-5b96-ac1e-a2962a402336}.png",
-            "name": "PowerShell Core",
-            "padding": "5, 5, 5, 5",
-            "snapOnInput": true,
-            "startingDirectory": "%__CD__%",
-            "useAcrylic": false
-        },
-        {
-            "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
-            "hidden": false,
-            "name": "Azure Cloud Shell",
-            "source": "Windows.Terminal.Azure"
-        },
-        {
-            "guid": "{c6eaf9f4-32a7-5fdc-b5cf-066e8a4b1e40}",
-            "hidden": false,
-            "name": "Ubuntu-18.04",
-            "source": "Windows.Terminal.Wsl"
-        }
-    ],
-    "schemes": [
-        {
-            "background": "#282A36",
-            "black": "#21222C",
-            "blue": "#BD93F9",
-            "brightBlack": "#6272A4",
-            "brightBlue": "#D6ACFF",
-            "brightCyan": "#A4FFFF",
-            "brightGreen": "#69FF94",
-            "brightPurple": "#FF92DF",
-            "brightRed": "#FF6E6E",
-            "brightWhite": "#FFFFFF",
-            "brightYellow": "#FFFFA5",
-            "cyan": "#8BE9FD",
-            "foreground": "#F8F8F2",
-            "green": "#50FA7B",
-            "name": "Dracula",
-            "purple": "#FF79C6",
-            "red": "#FF5555",
-            "white": "#F8F8F2",
-            "yellow": "#F1FA8C"
-        }
+  "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+  "$schema": "https://aka.ms/terminal-profiles-schema",
+  "globals": {
+    "alwaysShowTabs": true,
+    "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+    "initialCols": 130,
+    "initialRows": 55,
+    "requestedTheme": "system",
+    "showTabsInTitlebar": true,
+    "showTerminalTitleInTitlebar": true,
+    "keybindings": [
+      {
+        "command": "closeTab",
+        "keys": ["ctrl+w"]
+      },
+      {
+        "command": "newTab",
+        "keys": ["ctrl+t"]
+      },
+      {
+        "command": "nextTab",
+        "keys": ["ctrl+tab"]
+      },
+      {
+        "command": "openSettings",
+        "keys": ["ctrl+,"]
+      },
+      {
+        "command": "prevTab",
+        "keys": ["ctrl+shift+tab"]
+      },
+      {
+        "command": "scrollDown",
+        "keys": ["ctrl+shift+down"]
+      },
+      {
+        "command": "scrollUp",
+        "keys": ["ctrl+shift+up"]
+      },
+      {
+        "command": "splitVertical",
+        "keys": ["ctrl+§"]
+      }
     ]
+  },
+  "profiles": [
+    {
+      "closeOnExit": true,
+      "colorScheme": "Dracula",
+      "commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+      "cursorColor": "#FFFFFF",
+      "cursorShape": "bar",
+      "fontFace": "Fira Code",
+      "fontSize": 10,
+      "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+      "historySize": 9001,
+      "icon": "ms-appx:///ProfileIcons/{574e775e-4f2a-5b96-ac1e-a2962a402336}.png",
+      "name": "PowerShell Core",
+      "padding": "5, 5, 5, 5",
+      "snapOnInput": true,
+      "startingDirectory": "%__CD__%",
+      "useAcrylic": false
+    },
+    {
+      "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+      "hidden": false,
+      "name": "Azure Cloud Shell",
+      "source": "Windows.Terminal.Azure"
+    },
+    {
+      "guid": "{c6eaf9f4-32a7-5fdc-b5cf-066e8a4b1e40}",
+      "hidden": false,
+      "name": "Ubuntu-18.04",
+      "source": "Windows.Terminal.Wsl"
+    }
+  ],
+  "schemes": [
+    {
+      "background": "#282A36",
+      "black": "#21222C",
+      "blue": "#BD93F9",
+      "brightBlack": "#6272A4",
+      "brightBlue": "#D6ACFF",
+      "brightCyan": "#A4FFFF",
+      "brightGreen": "#69FF94",
+      "brightPurple": "#FF92DF",
+      "brightRed": "#FF6E6E",
+      "brightWhite": "#FFFFFF",
+      "brightYellow": "#FFFFA5",
+      "cyan": "#8BE9FD",
+      "foreground": "#F8F8F2",
+      "green": "#50FA7B",
+      "name": "Dracula",
+      "purple": "#FF79C6",
+      "red": "#FF5555",
+      "white": "#F8F8F2",
+      "yellow": "#F1FA8C"
+    }
+  ]
 }
