@@ -1,8 +1,11 @@
+# Prompt
+# Displays path components in reverse order in window title
+# "C:\temp\subfolder" becomes "subfolder<-temp<-C:"
+
 function prompt {
     if ($null -ne $GitPromptScriptBlock) {
         & $GitPromptScriptBlock
-    }
-    else {
+    } else {
         "$($executionContext.SessionState.Path.CurrentLocation)$('>' * ($nestedPromptLevel + 1))"
     }
     $path = $executionContext.SessionState.Path.CurrentLocation
@@ -13,54 +16,83 @@ function prompt {
     }
     $prompt += $segments[1].Trim('/')
 
-    $Host.UI.RawUI.WindowTitle = $prompt # Display path components in reverse order in window title
+    $Host.UI.RawUI.WindowTitle = $prompt
+}
+
+# Aliases
+
+Set-Alias grep Select-String
+Set-Alias which where.exe
+Set-Alias gh Get-Help
+
+# Functions
+
+function tail {
+    param (
+        [string]$FileName
+    )
+    Get-Content -Path $FileName -Tail 20 -Wait
+}
+
+function Invoke-Elevated {
+    if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')) {
+        Start-Process -FilePath pwsh.exe -Verb Runas
+    }
+}
+
+function Set-EnvironmentVariable {
+    param (
+        [string]$Key,
+        [string]$Value,
+        [switch]$Machine
+    )
+    if ($Machine) {
+        [System.Environment]::SetEnvironmentVariable($Key, $Value, [System.EnvironmentVariableTarget]::Machine)
+    } else {
+        [System.Environment]::SetEnvironmentVariable($Key, $Value, [System.EnvironmentVariableTarget]::User)
+    }
+}
+
+function explore {
+    param([string]$Path)
+    Start-Process explorer.exe -ArgumentList $Path
+}
+
+function killall {
+    param(
+        [string]$Name
+    )
+    $p = Get-Process -Name $Name
+    $p.where{ $_.ID -ne $PID }.foreach{ $_.Kill() }
+    $p.where{ $_.ID -eq $PID }.foreach{ $_.Kill() }
+}
+
+function touch {
+    param (
+        [string]$FileName
+    )
+    New-Item -Name $FileName -ItemType File
+}
+
+function ep {
+    &code $profile.CurrentUserAllHosts
 }
 
 function pg {
     Import-Module posh-git
 }
 
-function google {
-    param (
-        [string]$Query
-    )
-    $UrlEncodedQuery = [uri]::EscapeDataString($Query)
-    ff -Arguments "https://www.google.com/search?q=$UrlEncodedQuery"
+function ga {
+    git.exe add -A
 }
 
-function editprofile {
-    &code $m.profile
+function gst {
+    git.exe status
 }
 
-function New-PowerShell {
-    param(
-        [String]$WorkingDirectory = $PWD
-    )
-    Start-Process pwsh -WorkingDirectory $WorkingDirectory
+function glog {
+    Clear-Host; git.exe --no-pager log --oneline --graph -n 30 --all --format=format:"%<(60,trunc)%s %Cgreen%<(40,ltrunc)%d%Creset" --date-order; Write-Output "`n"
 }
-
-function ff {
-    param(
-        [String[]]$Arguments
-    )
-    Start-Process -FilePath $m.firefox -ArgumentList $Arguments
-}
-
-function ga() { git.exe add -A }
-function gst() { git.exe status }
-function gas() { git.exe add -A; git.exe status }
-function glog() { Clear-Host; git.exe --no-pager log --oneline --graph -n 20 --all --format=format:"%<(60,trunc)%s %Cgreen%<(40,ltrunc)%d%Creset" --date-order; Write-Output "`n" }
-
-
-Set-Alias grep Select-String
-Set-Alias ep editprofile
-Set-Alias np New-PowerShell
-Set-Alias which where.exe
-Set-Alias tail Get-FileTail
-Set-Alias gh Get-Help
-
-
-
 
 Function Invoke-RDP {
     param
@@ -68,8 +100,8 @@ Function Invoke-RDP {
         [Parameter(
             Position = 0,
             ValueFromPipeline = $true,
-            Mandatory = $true,
-            HelpMessage = "Server"
+            Mandatory = $true
+
         )]
         [ValidateNotNullOrEmpty()]
         [string]
@@ -77,8 +109,7 @@ Function Invoke-RDP {
         [Parameter(
             Position = 1,
             ValueFromPipeline = $true,
-            Mandatory = $true,
-            HelpMessage = "Credentials"
+            Mandatory = $true
         )]
         [ValidateNotNullOrEmpty()]
         [pscredential]
@@ -108,9 +139,3 @@ Function Map-Unc {
     $password = $Credentials.GetNetworkCredential().Password
     net.exe use $Path /user:$user $password
 }
-
-$myDictionary = @{ }
-$myDictionary.profile = $profile.CurrentUserAllHosts
-$myDictionary.firefox = "C:\Program Files\Mozilla Firefox\firefox.exe"
-$myDictionary.sysinternals = "C:\ProgramData\chocolatey\lib\sysinternals"
-$m = $([PSCustomObject]$myDictionary) # Less members for autocompletion compared to the hash
