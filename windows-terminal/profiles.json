@@ -1,49 +1,62 @@
 {
   "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
   "$schema": "https://aka.ms/terminal-profiles-schema",
-  "globals": {
-    "alwaysShowTabs": true,
-    "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
-    "initialCols": 130,
-    "initialRows": 55,
-    "requestedTheme": "system",
-    "showTabsInTitlebar": true,
-    "showTerminalTitleInTitlebar": true,
-    "keybindings": [
-      {
-        "command": "closeTab",
-        "keys": ["ctrl+w"]
-      },
-      {
-        "command": "newTab",
-        "keys": ["ctrl+t"]
-      },
-      {
-        "command": "nextTab",
-        "keys": ["ctrl+tab"]
-      },
-      {
-        "command": "openSettings",
-        "keys": ["ctrl+,"]
-      },
-      {
-        "command": "prevTab",
-        "keys": ["ctrl+shift+tab"]
-      },
-      {
-        "command": "scrollDown",
-        "keys": ["ctrl+shift+down"]
-      },
-      {
-        "command": "scrollUp",
-        "keys": ["ctrl+shift+up"]
-      },
-      {
-        "command": "splitVertical",
-        "keys": ["ctrl+§"]
-      }
-    ]
-  },
+  "alwaysShowTabs": true,
+  "initialCols": 130,
+  "initialRows": 55,
+  "requestedTheme": "system",
+  "showTabsInTitlebar": true,
+  "showTerminalTitleInTitlebar": true,
+  "keybindings": [
+    {
+      "command": "closeTab",
+      "keys": [
+        "ctrl+w"
+      ]
+    },
+    {
+      "command": "newTab",
+      "keys": [
+        "ctrl+t"
+      ]
+    },
+    {
+      "command": "nextTab",
+      "keys": [
+        "ctrl+tab"
+      ]
+    },
+    {
+      "command": "openSettings",
+      "keys": [
+        "ctrl+,"
+      ]
+    },
+    {
+      "command": "prevTab",
+      "keys": [
+        "ctrl+shift+tab"
+      ]
+    },
+    {
+      "command": "scrollDown",
+      "keys": [
+        "ctrl+shift+down"
+      ]
+    },
+    {
+      "command": "scrollUp",
+      "keys": [
+        "ctrl+shift+up"
+      ]
+    },
+    {
+      "command": "splitVertical",
+      "keys": [
+        "ctrl+§"
+      ]
+    }
+  ],
   "profiles": [
     {
       "closeOnExit": true,
