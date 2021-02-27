@@ -5,7 +5,8 @@
 function prompt {
     if ($null -ne $GitPromptScriptBlock) {
         & $GitPromptScriptBlock
-    } else {
+    }
+    else {
         "$($executionContext.SessionState.Path.CurrentLocation)$('>' * ($nestedPromptLevel + 1))"
     }
     $path = $executionContext.SessionState.Path.CurrentLocation
@@ -15,8 +16,15 @@ function prompt {
         $prompt += $segments[$i].Trim('/') + "←"
     }
     $prompt += $segments[1].Trim('/')
-
+    
+    if (([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')) {
+        $prompt = "[Admin] $prompt"
+    }
     $Host.UI.RawUI.WindowTitle = $prompt
+}
+
+function wtwsl {
+    wt -p "Ubuntu-20.04"
 }
 
 # Aliases
@@ -24,6 +32,12 @@ function prompt {
 Set-Alias grep Select-String
 Set-Alias which where.exe
 Set-Alias gh Get-Help
+Set-Alias ep edit-profile
+Set-Alias pg import-poshgit
+Set-Alias sudowt Invoke-Elevated 
+Set-Alias ctj ConvertTo-Json
+Set-Alias cfj ConvertFrom-Json
+Set-Alias gh gh.exe
 
 # Functions
 
@@ -36,7 +50,7 @@ function tail {
 
 function Invoke-Elevated {
     if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')) {
-        Start-Process -FilePath pwsh.exe -Verb Runas
+        Start-Process -FilePath wt.exe -Verb Runas
     }
 }
 
@@ -48,7 +62,8 @@ function Set-EnvironmentVariable {
     )
     if ($Machine) {
         [System.Environment]::SetEnvironmentVariable($Key, $Value, [System.EnvironmentVariableTarget]::Machine)
-    } else {
+    }
+    else {
         [System.Environment]::SetEnvironmentVariable($Key, $Value, [System.EnvironmentVariableTarget]::User)
     }
 }
@@ -58,11 +73,15 @@ function explore {
     Start-Process explorer.exe -ArgumentList $Path
 }
 
+function .. {
+    Set-Location ..
+}
+
 function killall {
     param(
         [string]$Name
     )
-    $p = Get-Process -Name $Name
+    $p = Get-Process -Name $Name | Where-Object { $_ -ne $PID } 
     $p.where{ $_.ID -ne $PID }.foreach{ $_.Kill() }
     $p.where{ $_.ID -eq $PID }.foreach{ $_.Kill() }
 }
@@ -74,11 +93,12 @@ function touch {
     New-Item -Name $FileName -ItemType File
 }
 
-function ep {
-    &code $profile.CurrentUserAllHosts
+function edit-profile {
+    &code $PROFILE.CurrentUserCurrentHost
 }
 
-function pg {
+
+function import-poshgit {
     Import-Module posh-git
 }
 
@@ -123,7 +143,7 @@ Function Invoke-RDP {
     cmdkey.exe /Delete:TERMSRV/$server
 }
 
-Function Map-Unc {
+Function Connect-Unc {
     param(
         [Parameter(Mandatory = $true)]
         [string]
