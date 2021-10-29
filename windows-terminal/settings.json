@@ -30,14 +30,15 @@
         "closeOnExit": true,
         "colorScheme": "Dracula",
         "commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
-        "cursorColor": "#FFFFFF",
-        "cursorShape": "vintage",
+        "cursorColor": "#757575",
+        "cursorShape": "filledBox",
         "fontFace": "Fira Code",
         "fontSize": 10,
+        "fontWeight": "normal",
         "historySize": 9001,
         "icon": "ms-appx:///ProfileIcons/{574e775e-4f2a-5b96-ac1e-a2962a402336}.png",
         "name": "PowerShell Core",
-        "padding": "5, 5, 5, 5",
+        "padding": "2, 2, 2, 2",
         "snapOnInput": true,
         "startingDirectory": "%__CD__%",
         "useAcrylic": false
@@ -85,7 +86,7 @@
   "actions": [
     {
       "command": "closeTab",
-      "keys": ["ctrl+w"]
+      "keys": ["ctrl+alt+w"]
     },
     {
       "command": "newTab",
